@@ -6,7 +6,7 @@ $redirect = request()->has('redirect') ? '?redirect=' . request()->input('redire
     <div>
 
         <div class="row" style="margin-top:10%; width:100%">
-            <div class="col-md-8" style="background-color:darkorange">
+            <div class="col-md-8">
 
                 <div style="margin-top:100px;margin-left:50%; align-content:center">
                     <table class="table">
@@ -42,7 +42,7 @@ $redirect = request()->has('redirect') ? '?redirect=' . request()->input('redire
                 </div>
 
             </div>
-            <div class="col" style="background-color:rgb(75, 45, 8)">
+            <div class="col">
 
                 <img src=" {{ url('images/taco.gif') }}"
                     class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
@@ -51,7 +51,7 @@ $redirect = request()->has('redirect') ? '?redirect=' . request()->input('redire
             </div>
         </div>
         <div class="row" style="width:100%">
-            <div class="col-md-8" style="background-color:rgb(255, 60, 0)">hi <br> <br> <br> <br> hi</div>
-            <div class="col" style="background-color:rgb(75, 24, 8)">hi <br> <br> <br> <br> hi</div>
+            <div class="col-md-8">hi <br> <br> <br> <br> hi</div>
+            <div class="col">hi <br> <br> <br> <br> hi</div>
         </div>
     @endsection
