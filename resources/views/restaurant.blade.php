@@ -9,9 +9,9 @@ if (isset($_POST['submit'])) {
 }
 @endphp
 @section('content')
-    <div class="container" style="margin-top: 70px">
+    <div class="container" style="margin-top: 70px;">
         <div class="jumbotron" style="margin-bottom: 100px">
-            <h1 class="test">{{ $resName }}</h1>
+            <img src=" {{ url(glob("images/$resName.*")[0]) }}" style="margin-left:38%" width="130px" alt="">
         </div>
         <div class="row">
             <div class="col-sm">
