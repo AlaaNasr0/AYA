@@ -15,10 +15,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        // Read value from Model method
-        $userData = Reservation::getuserData();
-        // Pass to view
-        return view('home')->with("userData", $userData);
+        return view('reservation');
     }
 
 

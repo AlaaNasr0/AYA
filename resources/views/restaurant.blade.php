@@ -55,10 +55,14 @@ if (isset($_POST['submit'])) {
                 </form>
             </div>
             <div class="col-sm">
-                <h3>hi</h3>
+                <a class="btn btn-link" href="{{ route('reservation.index') }}">
+                    To Reservation
+                </a>
             </div>
             <div class="col-sm">
-                <h3>hi</h3>
+                <a class="btn btn-link" href="{{ route('order.index') }}">
+                    To Orders
+                </a>
             </div>
         </div>
     @endsection

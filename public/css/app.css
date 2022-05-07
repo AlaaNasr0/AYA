@@ -4051,7 +4051,8 @@ textarea.form-control-lg {
   padding-top: 0.32rem;
   padding-bottom: 0.32rem;
   margin-right: 1rem;
-  font-size: 1.125rem;
+  font-size: 1.65rem;
+  font-family: Georgia;
   text-decoration: none;
   white-space: nowrap;
 }

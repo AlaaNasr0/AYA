@@ -8,7 +8,7 @@ $redirect = request()->has('redirect') ? '?redirect=' . request()->input('redire
         <div class="row" style="margin-top:10%; width:100%">
             <div class="col-md-8" style="background-color:darkorange">
 
-                <div style="margin-top:100px; align-content:center">
+                <div style="margin-top:100px;margin-left:50%; align-content:center">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>

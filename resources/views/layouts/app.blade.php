@@ -31,9 +31,20 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    AYA
-                </a>
+                <h3>
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        AYA
+                    </a>
+                </h3>
+                @guest
+                    <li class="nav-item">
+                        Welcome
+                    </li>
+                @else
+                    <li class="nav-item">
+                        Welcome {{ Auth::user()->fname }} {{ Auth::user()->lname }}
+                    </li>
+                @endguest
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -59,16 +70,23 @@
                                 </li>
                             @endif
                         @else
-                            <p style="padding-top:5px">
-                                Welcome
-                                {{ Auth::user()->fname }}
-                                {{ Auth::user()->lname }}
-                            </p>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('reservation.index') }}">
+                                    To Reservation
+                                </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('reservation.index') }}">
+                                    To Reservation
+                                </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('reservation.index') }}">
+                                    To Reservation
+                                </a>
+                            </li>
 
                             <div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}>
+                                    {{ __('Logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
