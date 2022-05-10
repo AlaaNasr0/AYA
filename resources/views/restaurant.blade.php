@@ -3,7 +3,6 @@
 if (isset($_POST['submit'])) {
     if (isset($_POST['select'])) {
         $p = $_POST['select'];
-        // dd($p);
         print_r($p);
     }
 }
@@ -15,6 +14,7 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="row">
             <div class="col-sm">
+                <input type="checkbox" checked data-toggle="toggle" data-on="LBP" data-off="USD">
                 <form action="#" method="post">
                     @foreach ($foods as $menu => $food)
                         <h5>{{ $menu }}</h5>
@@ -45,7 +45,8 @@ if (isset($_POST['submit'])) {
                                         {{ $f->price }}
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="select[]" id="ResSelect" value="{{ $f->name }}">
+                                        <input type="checkbox" class="form-check-input" name="select[]" id="ResSelect"
+                                            value="{{ $f->name }}">
                                     </td>
                                 </tr>
                             @endforeach

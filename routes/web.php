@@ -31,6 +31,10 @@ Route::get('restaurant/{resID}/{resName}', [App\Http\Controllers\RestaurentContr
 Route::get('show/{resID}', [App\Http\Controllers\RestaurentController::class, 'show'])->name('restaurant.show');
 Route::get('/reservation', [App\Http\Controllers\ReservationController::class, 'index'])->name('reservation.index');
 Route::get('/order', [App\Http\Controllers\OrderController::class, 'index'])->name('order.index');
+
+Route::get('/aboutus', [App\Http\Controllers\NavController::class, 'aboutUsShow'])->name('aboutus.show');
+Route::get('/feedback', [App\Http\Controllers\NavController::class, 'feedbackShow'])->name('feedback.show');
+// Route::get('/feedback', [App\Http\Controllers\NavController::class, 'feedbackShow'])->name('feedback.show');
 // Route::get('/restaurant', function () {
 //     return view('restaurant');
 // });

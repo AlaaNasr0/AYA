@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Reservation extends Model
+class Restaurants extends Model
 {
     use HasFactory;
 
-    public static function getuserData()
+    public static function getRestaurants()
     {
-        $value = DB::table('resturents')->get();
-        return $value;
+        $restaurants = DB::table('resturents')->get();
+        return $restaurants;
     }
 }

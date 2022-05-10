@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reservation;
+use App\Models\Restaurants;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userData = Reservation::getuserData();
+        $userData = Restaurants::getRestaurants();
         // Pass to view
         return view('home')->with("userData", $userData);
     }
