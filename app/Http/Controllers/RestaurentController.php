@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class RestaurentController extends Controller
 {
-    public function index($resID, $resName)
+    public function index($resID, $resName, $curr)
     {
         // Read value from Model method
         // Pass to view
@@ -17,7 +17,17 @@ class RestaurentController extends Controller
         foreach ($menus as $menu) {
             $foods[$menu->name] = DB::table('food')->where('menuID', $menu->id)->get();
         }
-        return view('restaurant', compact('resID', 'resName', 'menu', 'foods'));
+        if ($curr == 0) {
+            foreach ($foods as $menu => $food) {
+                foreach ($food as $f) {
+                    $f->price /= 26000.0;
+                    $f->price = number_format($f->price, 2, '.', '');
+                }
+            }
+        }
+
+
+        return view('restaurant', compact('resID', 'resName', 'menu', 'foods', 'curr'));
     }
     public function show($resID)
     {
@@ -25,5 +35,10 @@ class RestaurentController extends Controller
         // $submission = Submission::where('id', $id)
         // ->with('form')
         //     ->firstOrFail();
+    }
+    public function LiraDollar(Request $request)
+    {
+        // dd($request->liradollar);
+        return view('restaurant');
     }
 }

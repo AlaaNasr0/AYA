@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Reservation;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
@@ -13,13 +14,15 @@ class ReservationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($ResID, $ResName)
     {
-        return view('reservation');
+        $tables = DB::table('tables')->where('RID', $ResID)->get();
+
+        return view('reservation', compact('ResID', 'ResName', 'tables'));
     }
 
 
-    public function show(Reservation $reservation)
+    public function show()
     {
         //
     }
@@ -31,7 +34,7 @@ class ReservationController extends Controller
      * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateReservationRequest $request, Reservation $reservation)
+    public function update()
     {
         //
     }

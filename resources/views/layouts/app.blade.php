@@ -40,8 +40,8 @@
     @livewireStyles
 </head>
 
-<body class="c-app" style="background-image:url({{ url('images/shawki.jpeg') }});
-                                        background-size:contain;background-attachment:fixed;">
+<body class="c-app" style="background-image:url({{ url('images/shok.jpeg') }});
+                                        background-size:cover;background-attachment:fixed;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm fixed-top">
             <div class="container">
@@ -92,7 +92,7 @@
                                     <div class="dropdown-menu">
                                         @foreach (DB::table('resturents')->get() as $resturent)
                                             <a class="dropdown-item"
-                                                href="{{ route('restaurant.index', [$resturent->id, $resturent->ResName]) }}">{{ $resturent->ResName }}</a>
+                                                href="{{ route('restaurant.index', [$resturent->id, $resturent->ResName, 1]) }}">{{ $resturent->ResName }}</a>
                                         @endforeach
                                     </div>
                                 </div>

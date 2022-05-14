@@ -27,7 +27,7 @@ $redirect = request()->has('redirect') ? '?redirect=' . request()->input('redire
                             @foreach ($userData as $user)
                                 <tr>
                                     <td><a class="btn btn-link"
-                                            href="{{ route('restaurant.index', [$user->id, $user->ResName]) }}">
+                                            href="{{ route('restaurant.index', [$user->id, $user->ResName, 1]) }}">
                                             {{ $user->ResName }}
                                         </a>
                                     </td>

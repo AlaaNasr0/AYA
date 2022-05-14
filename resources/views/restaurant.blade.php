@@ -9,12 +9,30 @@ if (isset($_POST['submit'])) {
 @endphp
 @section('content')
     <div class="container" style="margin-top: 70px;">
-        <div class="jumbotron" style="margin-bottom: 100px">
-            <img src=" {{ url(glob("images/$resName.*")[0]) }}" style="margin-left:38%" width="130px" alt="">
+        <div class="row">
+            <div class="col">
+                <div class="jumbotron" style="margin-bottom: 100px;margin-right:60%">
+                    <img src=" {{ url(glob("images/$resName.*")[0]) }}" style="margin-left:38%" width="130px" alt="">
+                </div>
+            </div>
+            <div class="col" style="padding-left: 65%">
+                {{-- <form action="{{ route('restaurant.index', [$resID, $resName]) }}" method="GET">
+                    <input type="checkbox" class="liradollar" name="liradollar" checked data-toggle="toggle"
+                        data-on="LBP" data-off="USD">
+                </form> --}}
+                @if ($curr == 0)
+                    <a href="{{ route('restaurant.index', [$resID, $resName, 1]) }}" class="btnLBP"
+                        style="background-color: chocolate">Change to LBP</a>
+                @endif
+                @if ($curr == 1)
+                    <a href="{{ route('restaurant.index', [$resID, $resName, 0]) }}" class="btnUSD"
+                        style="background-color: rgb(39, 100, 44)">Change to USD</a>
+                @endif
+
+            </div>
         </div>
         <div class="row">
             <div class="col-sm">
-                <input type="checkbox" checked data-toggle="toggle" data-on="LBP" data-off="USD">
                 <form action="#" method="post">
                     @foreach ($foods as $menu => $food)
                         <h5>{{ $menu }}</h5>
@@ -42,7 +60,12 @@ if (isset($_POST['submit'])) {
                                         {{ $f->name }}
                                     </td>
                                     <td>
-                                        {{ $f->price }}
+                                        @if ($curr)
+                                            {{ $f->price }} L.L.
+                                        @else
+                                            {{ $f->price }} $
+                                        @endif
+
                                     </td>
                                     <td>
                                         <input type="checkbox" class="form-check-input" name="select[]" id="ResSelect"
@@ -56,9 +79,9 @@ if (isset($_POST['submit'])) {
                 </form>
             </div>
             <div class="col-sm">
-                <a class="btn btn-link" href="{{ route('reservation.index') }}">
-                    To Reservation
-                </a>
+                <a href="{{ route('reservation.index', [$resID, $resName]) }}" class="btnLBP"
+                    style="background-color: chocolate">To
+                    Reservation</a>
             </div>
             <div class="col-sm">
                 <a class="btn btn-link" href="{{ route('order.index') }}">
