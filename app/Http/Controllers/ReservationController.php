@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Reservation;
 use App\Http\Requests\StoreReservationRequest;
@@ -18,13 +19,21 @@ class ReservationController extends Controller
     {
         $tables = DB::table('tables')->where('RID', $ResID)->get();
 
+
         return view('reservation', compact('ResID', 'ResName', 'tables'));
     }
 
 
-    public function show()
+    public function submit(Request $request)
     {
-        //
+        $ResID = $request->ResID;
+        $ResName = $request->resName;
+        $tid = $request->tid;
+
+        DB::insert('insert into reservation (DateTime, nbOfPeople, RID, tid, uid) values(?,?,?,?,?)', [$request->dat, $request->nop, $ResID, $tid, auth()->user()->id]);
+        DB::update('update tables set isFree = ? where id= ?', [0, $tid]);
+        $tables = DB::table('tables')->where('RID', $ResID)->get();
+        return view('reservation', compact('ResID', 'ResName', 'tables'));
     }
 
     /**

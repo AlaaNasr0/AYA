@@ -33,7 +33,10 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="row">
             <div class="col-sm">
-                <form action="#" method="post">
+                <form action="{{ route('order.index') . '?redirect=' . $curr }}" method="post">
+                    @csrf
+                    <input type="hidden" name="resID" value="{{ $resID }}">
+                    <input type="hidden" name="resName" value="{{ $resName }}">
                     @foreach ($foods as $menu => $food)
                         <h5>{{ $menu }}</h5>
                         <table class="table table-dark">
@@ -68,25 +71,20 @@ if (isset($_POST['submit'])) {
 
                                     </td>
                                     <td>
-                                        <input type="checkbox" class="form-check-input" name="select[]" id="ResSelect"
-                                            value="{{ $f->name }}">
+                                        <input type="checkbox" class="form-check-input" name="select[]"
+                                            value="{{ $f->id }}">
                                     </td>
                                 </tr>
                             @endforeach
                         </table>
                     @endforeach
-                    <input type="button" value="submit" name="submit">
+                    <button type="submit" class="btnLogin" style="margin-top:4%">Submit</button>
                 </form>
             </div>
             <div class="col-sm">
                 <a href="{{ route('reservation.index', [$resID, $resName]) }}" class="btnLBP"
                     style="background-color: chocolate">To
                     Reservation</a>
-            </div>
-            <div class="col-sm">
-                <a class="btn btn-link" href="{{ route('order.index') }}">
-                    To Orders
-                </a>
             </div>
         </div>
     @endsection

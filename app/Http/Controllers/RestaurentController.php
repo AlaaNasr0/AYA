@@ -26,19 +26,14 @@ class RestaurentController extends Controller
             }
         }
 
-
         return view('restaurant', compact('resID', 'resName', 'menu', 'foods', 'curr'));
     }
+
     public function show($resID)
     {
 
         // $submission = Submission::where('id', $id)
         // ->with('form')
         //     ->firstOrFail();
-    }
-    public function LiraDollar(Request $request)
-    {
-        // dd($request->liradollar);
-        return view('restaurant');
     }
 }

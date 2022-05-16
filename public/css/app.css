@@ -2044,7 +2044,6 @@ progress {
     border-color: #dee2e6;
     background: rgba(0, 0, 0, 0.6);
     color: white;
-    margin-left: -40%;
 }
 
 .table > :not(caption) > * > * {
@@ -6099,7 +6098,7 @@ fieldset:disabled .btn {
 .flip-card-back {
     background-color: chocolate;
     color: white;
-    padding-top:25%;
+    padding-top: 10%;
     transform: rotateY(180deg);
 }
 .list-group {

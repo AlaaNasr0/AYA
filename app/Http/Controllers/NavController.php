@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Restaurants;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,8 @@ class NavController extends Controller
     public function resDropDown()
     {
         $restaurant = Restaurants::getRestaurants();
-        return view('layouts/app', compact('restaurant'));
+
+        $reminder = DB::table('reservation')->where('uid', auth()->user()->id)->get();
+        return view('layouts/app', compact('restaurant', 'reminder'));
     }
 }

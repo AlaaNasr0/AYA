@@ -30,8 +30,10 @@ Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name(
 Route::get('restaurant/{resID}/{resName}/{curr}', [App\Http\Controllers\RestaurentController::class, 'index'])->name('restaurant.index');
 Route::get('show/{resID}', [App\Http\Controllers\RestaurentController::class, 'LiraDollar'])->name('restaurant.changeCurr');
 Route::get('/reservation/{resID}/{resName}', [App\Http\Controllers\ReservationController::class, 'index'])->name('reservation.index');
-Route::get('/order', [App\Http\Controllers\OrderController::class, 'index'])->name('order.index');
-
+Route::post('/order', [App\Http\Controllers\OrderController::class, 'index'])->name('order.index');
+Route::post('/orderForm', [App\Http\Controllers\OrderController::class, 'update'])->name('order.update');
+Route::post('/orderInfo', [App\Http\Controllers\OrderController::class, 'submit'])->name('order.placeOrder');
+Route::post('/reservation', [App\Http\Controllers\ReservationController::class, 'submit'])->name('reservation.submit');
 Route::get('/aboutus', [App\Http\Controllers\NavController::class, 'aboutUsShow'])->name('aboutus.show');
 Route::get('/feedback', [App\Http\Controllers\NavController::class, 'feedbackShow'])->name('feedback.show');
 // Route::get('/feedback', [App\Http\Controllers\NavController::class, 'feedbackShow'])->name('feedback.show');
