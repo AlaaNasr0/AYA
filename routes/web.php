@@ -36,6 +36,7 @@ Route::post('/orderInfo', [App\Http\Controllers\OrderController::class, 'submit'
 Route::post('/reservation', [App\Http\Controllers\ReservationController::class, 'submit'])->name('reservation.submit');
 Route::get('/aboutus', [App\Http\Controllers\NavController::class, 'aboutUsShow'])->name('aboutus.show');
 Route::get('/feedback', [App\Http\Controllers\NavController::class, 'feedbackShow'])->name('feedback.show');
+Route::post('/feedbackSend', [App\Http\Controllers\NavController::class, 'feedbackIndex'])->name('feedback.index');
 // Route::get('/feedback', [App\Http\Controllers\NavController::class, 'feedbackShow'])->name('feedback.show');
 // Route::get('/restaurant', function () {
 //     return view('restaurant');

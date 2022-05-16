@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <div class="min-vh-100 d-flex flex-column 
                 justify-content-between">
         <div class="container" style="margin-top:10%;color:white">
@@ -19,4 +19,6 @@
                 </div>
             </div>
         </div>
-    @endsection
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\siham\Documents\AYA\resources\views/aboutus.blade.php ENDPATH**/ ?>

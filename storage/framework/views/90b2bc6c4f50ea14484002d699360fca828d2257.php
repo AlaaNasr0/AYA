@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 
 
 <head>
@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
     <title>AYA</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
@@ -33,37 +33,39 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <style>
 
 
     </style>
-    @livewireStyles
+    <?php echo \Livewire\Livewire::styles(); ?>
+
 </head>
 
-<body class="c-app" style="background-image:url({{ url('images/shok.jpeg') }});
+<body class="c-app" style="background-image:url(<?php echo e(url('images/shok.jpeg')); ?>);
                                         background-size:cover;background-attachment:fixed;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm fixed-top">
             <div class="container">
                 <h3>
-                    <a class="navbar-brand" href="{{ route('home.index') }}" style="color:white">
+                    <a class="navbar-brand" href="<?php echo e(route('home.index')); ?>" style="color:white">
                         AYA
                     </a>
                 </h3>
-                @guest
+                <?php if(auth()->guard()->guest()): ?>
                     <li class="nav-item" style="color:white">
                         Welcome
                     </li>
-                @else
+                <?php else: ?>
                     <li class="nav-item" style="color:white">
-                        Welcome {{ Auth::user()->fname }} {{ Auth::user()->lname }}
+                        Welcome <?php echo e(Auth::user()->fname); ?> <?php echo e(Auth::user()->lname); ?>
+
                     </li>
-                @endguest
+                <?php endif; ?>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    aria-expanded="false" aria-label="<?php echo e(__('Toggle navigation')); ?>">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -73,63 +75,65 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
+                        <?php if(auth()->guard()->guest()): ?>
+                            <?php if(Route::has('login')): ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="<?php echo e(route('login')); ?>"><?php echo e(__('Login')); ?></a>
                                 </li>
-                            @endif
+                            <?php endif; ?>
 
-                            @if (Route::has('register'))
+                            <?php if(Route::has('register')): ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a>
                                 </li>
-                            @endif
-                        @else
+                            <?php endif; ?>
+                        <?php else: ?>
                             <li>
                                 <div class="dropdown">
                                     <button type="button" class="btn-res dropdown-toggle" data-toggle="dropdown">
                                         Restaurant
                                     </button>
                                     <div class="dropdown-menu">
-                                        @foreach (DB::table('resturents')->get() as $resturent)
+                                        <?php $__currentLoopData = DB::table('resturents')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $resturent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <a class="dropdown-item"
-                                                href="{{ route('restaurant.index', [$resturent->id, $resturent->ResName, 1]) }}">{{ $resturent->ResName }}</a>
-                                        @endforeach
+                                                href="<?php echo e(route('restaurant.index', [$resturent->id, $resturent->ResName, 1])); ?>"><?php echo e($resturent->ResName); ?></a>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('aboutus.show') }}">
+                            <li class="nav-item"><a class="nav-link" href="<?php echo e(route('aboutus.show')); ?>">
                                     About Us
                                 </a>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('feedback.show') }}">
+                            <li class="nav-item"><a class="nav-link" href="<?php echo e(route('feedback.show')); ?>">
                                     Feedback
                                 </a>
                             </li>
                             <li>
                                 <div>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <?php echo e(__('Logout')); ?>
+
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST"
                                         class="d-none" style="margin-right:100%">
-                                        @csrf
+                                        <?php echo csrf_field(); ?>
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        <?php endif; ?>
                     </ul>
                 </div>
         </nav>
 
         <main class="py-6">
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </main>
     </div>
-    @livewireScripts
+    <?php echo \Livewire\Livewire::scripts(); ?>
+
 </body>
 
 <footer class="text-center text-white" style="background-color:rgb(151, 103, 69)">
@@ -177,3 +181,4 @@
 
 
 </html>
+<?php /**PATH C:\Users\siham\Documents\AYA\resources\views/layouts/app.blade.php ENDPATH**/ ?>

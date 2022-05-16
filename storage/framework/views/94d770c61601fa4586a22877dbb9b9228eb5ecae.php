@@ -1,17 +1,17 @@
-@extends('layouts.app')
-@php
+
+<?php
 $curr = request()->redirect;
-@endphp
-@section('content')
+?>
+<?php $__env->startSection('content'); ?>
     <div class="min-vh-100 d-flex flex-column 
                 justify-content-between">
         <div class="container" style="margin-top: 70px;">
             <div class="row justify-content-center">
                 <div class="col-sm">
                     <form action="#" method="post">
-                        @csrf
+                        <?php echo csrf_field(); ?>
 
-                        <h5>{{ $resName }}</h5>
+                        <h5><?php echo e($resName); ?></h5>
                         <div>
                             <table class="table">
 
@@ -35,92 +35,96 @@ $curr = request()->redirect;
                                         Net Price
                                     </th>
                                 </tr>
-                                @foreach ($foods as $food)
+                                <?php $__currentLoopData = $foods; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $food): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         <td>
                                             <div class="jumbotron">
-                                                <img src=" {{ url(glob("images/dishPics/$food->name.*")[0]) }}"
+                                                <img src=" <?php echo e(url(glob("images/dishPics/$food->name.*")[0])); ?>"
                                                     width="70px" alt="">
                                             </div>
                                         </td>
                                         <td>
-                                            {{ $loop->iteration }}
+                                            <?php echo e($loop->iteration); ?>
+
                                         </td>
                                         <td>
-                                            {{ $food->name }}
+                                            <?php echo e($food->name); ?>
+
                                         </td>
                                         <td>
-                                            @if ($curr)
-                                                {{ $food->price }} L.L.
-                                            @else
-                                                {{ $food->price }} $
-                                            @endif
+                                            <?php if($curr): ?>
+                                                <?php echo e($food->price); ?> L.L.
+                                            <?php else: ?>
+                                                <?php echo e($food->price); ?> $
+                                            <?php endif; ?>
 
                                         </td>
                                         <td>
                                             <div class="form-group">
                                                 <input style="width:80px" class="form-control" type="number"
-                                                    name="{{ $food->id }}" value="{{ $quantity[$food->id] }}" min="1">
+                                                    name="<?php echo e($food->id); ?>" value="<?php echo e($quantity[$food->id]); ?>" min="1">
                                             </div>
                                         </td>
                                         <td>
-                                            @if ($quantity)
-                                                @if ($curr)
-                                                    {{ $food->price * $quantity[$food->id] }} L.L.
-                                                @else
-                                                    {{ $food->price * $quantity[$food->id] }} $
-                                                @endif
-                                            @else
-                                                @if ($curr)
-                                                    {{ $food->price }} L.L.
-                                                @else
-                                                    {{ $food->price }} $
-                                                @endif
-                                            @endif
+                                            <?php if($quantity): ?>
+                                                <?php if($curr): ?>
+                                                    <?php echo e($food->price * $quantity[$food->id]); ?> L.L.
+                                                <?php else: ?>
+                                                    <?php echo e($food->price * $quantity[$food->id]); ?> $
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <?php if($curr): ?>
+                                                    <?php echo e($food->price); ?> L.L.
+                                                <?php else: ?>
+                                                    <?php echo e($food->price); ?> $
+                                                <?php endif; ?>
+                                            <?php endif; ?>
 
                                         </td>
                                     </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </table>
 
                         </div>
                         <div>
                             <div class="form-group" style="display: inline-block">
                                 <label for="text" style="color:white; font-size:30px;">Address: </label>
-                                <input class="form-control" type="text" name="address" value="{{ $address }}">
+                                <input class="form-control" type="text" name="address" value="<?php echo e($address); ?>">
                             </div>
                             <div style="display: inline-block; float:right">
-                                @if ($curr)
+                                <?php if($curr): ?>
                                     <b>
                                         <p style="color:white; font-size:30px;">Total
-                                            price: {{ $totalPrice }} L.L.</p>
+                                            price: <?php echo e($totalPrice); ?> L.L.</p>
                                     </b>
-                                @else
+                                <?php else: ?>
                                     <b>
                                         <p style="color:white; font-size:30px;">Total
-                                            price: {{ $totalPrice }} $</p>
+                                            price: <?php echo e($totalPrice); ?> $</p>
                                     </b>
-                                @endif
+                                <?php endif; ?>
                             </div>
 
                         </div>
                         <div style="margin-top:2%">
                             <div style="display: inline-block;">
                                 <button type=" submit" class="btnLogin"
-                                    formaction="{{ route('order.update') . '?redirect=' . $curr }}"
+                                    formaction="<?php echo e(route('order.update') . '?redirect=' . $curr); ?>"
                                     style="margin-top:4%">
                                     Update</button>
                             </div>
                             <div style="display: inline-block; float:right">
                                 <button type="submit" class="btnLogin"
-                                    formaction="{{ route('order.placeOrder') . '?redirect=' . $totalPrice . '&curr=' . $curr }}"
+                                    formaction="<?php echo e(route('order.placeOrder') . '?redirect=' . $totalPrice . '&curr=' . $curr); ?>"
                                     style="margin-top:4%">Place Order</button>
                             </div>
                         </div>
-                        <input type="hidden" name="resID" value="{{ $resID }}">
-                        <input type="hidden" name="resName" value="{{ $resName }}">
+                        <input type="hidden" name="resID" value="<?php echo e($resID); ?>">
+                        <input type="hidden" name="resName" value="<?php echo e($resName); ?>">
                     </form>
                 </div>
             </div>
         </div>
-    @endsection
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\siham\Documents\AYA\resources\views/order.blade.php ENDPATH**/ ?>

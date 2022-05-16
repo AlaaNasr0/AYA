@@ -99,8 +99,8 @@ class OrderController extends Controller
             $totalPrice *= 26000.0;
         }
         DB::insert('insert into orders (resID, UserID, address, totalPrice, Desciption) values(?,?,?,?,?)', [$request->resID, auth()->user()->id, $address, $totalPrice, $desc]);
+        $resName = $request->resName;
 
-
-        return view('orderInfo', compact('foods'));
+        return view('orderInfo', compact('desc', 'totalPrice', 'address', 'resName', 'curr'));
     }
 }

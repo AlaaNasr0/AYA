@@ -24,4 +24,10 @@ class NavController extends Controller
         $reminder = DB::table('reservation')->where('uid', auth()->user()->id)->get();
         return view('layouts/app', compact('restaurant', 'reminder'));
     }
+
+    public function feedbackIndex(Request $request)
+    {
+        DB::insert('insert into feedback (uid, message) values(?,?)', [auth()->user()->id, $request->feedback]);
+        return view('feedback');
+    }
 }
